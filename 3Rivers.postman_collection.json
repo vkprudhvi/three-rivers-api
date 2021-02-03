@@ -1,0 +1,377 @@
+{
+	"info": {
+		"_postman_id": "a370a145-d3fe-480c-afa9-13cee275b74b",
+		"name": "3Rivers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Accout balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/account/check-balance/Acc124",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"account",
+						"check-balance",
+						"Acc124"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Accout balance-200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/account/check-balance/Acc124",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"check-balance",
+								"Acc124"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 25 Jan 2021 06:19:37 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"balance\": 5000,\n    \"account_number\": \"Acc124\"\n}"
+				},
+				{
+					"name": "Get Accout balance -404",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/account/check-balance/test123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"account",
+								"check-balance",
+								"test123"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 25 Jan 2021 05:00:18 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2021-01-25T05:00:18.366+00:00\",\n    \"status\": \"Not Found\",\n    \"message\": \"Account not found!\",\n    \"path\": \"/api/v1/account/check-balance/test123\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/transaction/statement/Acc123/MONTHS/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"transaction",
+						"statement",
+						"Acc123",
+						"MONTHS",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get transactions-WIth-Transaction Type",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/transaction/statement/Acc123/MONTHS/2?transactionType=DEPOSIT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transaction",
+								"statement",
+								"Acc123",
+								"MONTHS",
+								"2"
+							],
+							"query": [
+								{
+									"key": "transactionType",
+									"value": "DEPOSIT"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 25 Jan 2021 06:25:15 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"content\": [\n        {\n            \"id\": 2,\n            \"accountNumber\": \"Acc123\",\n            \"transactionTs\": \"2021-01-01 10:15:18.385\",\n            \"type\": \"DEPOSIT\",\n            \"amount\": 130\n        }\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"sorted\": true,\n            \"unsorted\": false,\n            \"empty\": false\n        },\n        \"pageNumber\": 0,\n        \"pageSize\": 5,\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"totalElements\": 1,\n    \"totalPages\": 1,\n    \"last\": true,\n    \"first\": true,\n    \"sort\": {\n        \"sorted\": true,\n        \"unsorted\": false,\n        \"empty\": false\n    },\n    \"numberOfElements\": 1,\n    \"size\": 5,\n    \"number\": 0,\n    \"empty\": false\n}"
+				},
+				{
+					"name": "Get transactions-200-Last2Months",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/transaction/statement/Acc123/MONTHS/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transaction",
+								"statement",
+								"Acc123",
+								"MONTHS",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 25 Jan 2021 06:21:12 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"content\": [\n        {\n            \"id\": 2,\n            \"accountNumber\": \"Acc123\",\n            \"transactionTs\": \"2021-01-01 10:15:18.385\",\n            \"type\": \"DEPOSIT\",\n            \"amount\": 130\n        },\n        {\n            \"id\": 1,\n            \"accountNumber\": \"Acc123\",\n            \"transactionTs\": \"2020-12-22 10:15:18.385\",\n            \"type\": \"WITHDRAW\",\n            \"amount\": 100\n        }\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"sorted\": true,\n            \"unsorted\": false,\n            \"empty\": false\n        },\n        \"pageNumber\": 0,\n        \"pageSize\": 5,\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"totalElements\": 2,\n    \"totalPages\": 1,\n    \"last\": true,\n    \"first\": true,\n    \"sort\": {\n        \"sorted\": true,\n        \"unsorted\": false,\n        \"empty\": false\n    },\n    \"numberOfElements\": 2,\n    \"size\": 5,\n    \"number\": 0,\n    \"empty\": false\n}"
+				},
+				{
+					"name": "Get transactions-200-No-transactions available",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/transaction/statement/Acc123/DAYS/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transaction",
+								"statement",
+								"Acc123",
+								"DAYS",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 25 Jan 2021 06:22:43 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"content\": [],\n    \"pageable\": {\n        \"sort\": {\n            \"sorted\": true,\n            \"unsorted\": false,\n            \"empty\": false\n        },\n        \"pageNumber\": 0,\n        \"pageSize\": 5,\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"totalElements\": 0,\n    \"totalPages\": 0,\n    \"last\": true,\n    \"first\": true,\n    \"sort\": {\n        \"sorted\": true,\n        \"unsorted\": false,\n        \"empty\": false\n    },\n    \"numberOfElements\": 0,\n    \"size\": 5,\n    \"number\": 0,\n    \"empty\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "Get transactions Range",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/transaction//statement-range?accountNumber=Acc123&from=20201201&to=20210124&transactionType=DEPOSIT",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"transaction",
+						"",
+						"statement-range"
+					],
+					"query": [
+						{
+							"key": "accountNumber",
+							"value": "Acc123"
+						},
+						{
+							"key": "from",
+							"value": "20201201"
+						},
+						{
+							"key": "to",
+							"value": "20210124"
+						},
+						{
+							"key": "transactionType",
+							"value": "DEPOSIT"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get transactions Range",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/transaction//statement-range?accountNumber=Acc123&from=20201201&to=20210124&transactionType=DEPOSIT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transaction",
+								"",
+								"statement-range"
+							],
+							"query": [
+								{
+									"key": "accountNumber",
+									"value": "Acc123"
+								},
+								{
+									"key": "from",
+									"value": "20201201"
+								},
+								{
+									"key": "to",
+									"value": "20210124"
+								},
+								{
+									"key": "transactionType",
+									"value": "DEPOSIT"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 25 Jan 2021 06:26:40 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"content\": [\n        {\n            \"id\": 2,\n            \"accountNumber\": \"Acc123\",\n            \"transactionTs\": \"2021-01-01 10:15:18.385\",\n            \"type\": \"DEPOSIT\",\n            \"amount\": 130\n        }\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"sorted\": true,\n            \"unsorted\": false,\n            \"empty\": false\n        },\n        \"pageNumber\": 0,\n        \"pageSize\": 5,\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"totalElements\": 1,\n    \"totalPages\": 1,\n    \"last\": true,\n    \"first\": true,\n    \"sort\": {\n        \"sorted\": true,\n        \"unsorted\": false,\n        \"empty\": false\n    },\n    \"numberOfElements\": 1,\n    \"size\": 5,\n    \"number\": 0,\n    \"empty\": false\n}"
+				}
+			]
+		}
+	]
+}

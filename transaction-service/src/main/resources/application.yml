@@ -1,0 +1,35 @@
+server:
+  port: 8082
+  
+spring:
+  application:
+    name: transaction-service
+  jackson:
+    serialization:
+      indent-output: true
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: transaction_db
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone:  http://localhost:8761/eureka/
+
+logging:
+  level:
+    root: error
+    org.springframework: info
+    org.springframework.data.mongodb.core.MongoTemplate: debug
+    org.springframework.data.mongodb.repository.Query: debug
+    com.rivers.transaction.: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
